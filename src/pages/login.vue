@@ -48,6 +48,7 @@ export default {
         if (valid) {
           login(this.form).then(res => {
             console.log(res);
+            localStorage.setItem('Authorization',res.data.token)
             if (res.meta.status == 200) {
               this.$message({
                 showClose: true,

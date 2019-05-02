@@ -7,8 +7,7 @@ import Home from '../pages/home.vue'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
       redirect: '/login',
       name: 'HelloWorld',
@@ -22,7 +21,10 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        needLogin: true
+      }
     }
   ]
 })

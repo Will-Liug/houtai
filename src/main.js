@@ -4,7 +4,20 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '@/styles/index.less'
- 
+
+//全局导航守卫
+router.beforeEach((to, from, next) => {
+  let token = localStorage.getItem('Authorization')
+  if (to.meta.needLogin) {
+    if (token) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+})
 
 //引入element-ui
 import ElementUI from 'element-ui'
@@ -17,6 +30,8 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })
